@@ -8,6 +8,8 @@ class ConsumerserviceApplicationTests {
 
     @Test
     void contextLoads() {
+
+        assert(true);
     }
 
 }
