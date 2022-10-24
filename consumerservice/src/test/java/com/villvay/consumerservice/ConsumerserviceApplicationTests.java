@@ -9,7 +9,7 @@ class ConsumerserviceApplicationTests {
     @Test
     void contextLoads() {
 
-        assert(true);
+        assert (true);
     }
 
 }

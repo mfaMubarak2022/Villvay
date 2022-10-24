@@ -8,6 +8,7 @@ class ProducerserviceApplicationTests {
 
     @Test
     void contextLoads() {
+        assert (true);
     }
 
 }

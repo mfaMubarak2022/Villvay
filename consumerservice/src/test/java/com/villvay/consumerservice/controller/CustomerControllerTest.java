@@ -4,7 +4,6 @@ import com.villvay.consumerservice.entity.Customer;
 import com.villvay.consumerservice.model.CustomerDTO;
 import com.villvay.consumerservice.service.CustomerServiceImpl;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -14,20 +13,21 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest
 class CustomerControllerTest {
 
+    static List<Customer> mockCustomersList = new ArrayList<>();
+    static Customer mockCustomer = new Customer();
+    static CustomerDTO mockCustomerDTO = new CustomerDTO();
     @Mock
     CustomerServiceImpl customerService;
-
     @InjectMocks
     CustomerController customerController;
-   static List<Customer> mockCustomersList=new ArrayList<>();
-    static Customer mockCustomer=new Customer();
-    static CustomerDTO mockCustomerDTO=new CustomerDTO();
-    @BeforeEach
-    void beforeEach() {
+
+    @BeforeAll
+    static void beforeEach() {
         mockCustomer.setCustomerId(1);
         mockCustomer.setCustomerName("Saman");
 
@@ -40,40 +40,40 @@ class CustomerControllerTest {
     void getAllCustomers() {
 
         Mockito.when(customerService.getAllCustomers()).thenReturn(mockCustomersList);
-        assertEquals(customerController.getAllCustomers(),customerService.getAllCustomers());
+        assertEquals(customerController.getAllCustomers(), customerService.getAllCustomers());
     }
 
     @Test
     void getTotalCustomers() {
         Mockito.when(customerService.getTotalCustomers()).thenReturn(10);
-        assertEquals(customerController.getTotalCustomers(),customerService.getTotalCustomers());
+        assertEquals(customerController.getTotalCustomers(), customerService.getTotalCustomers());
     }
 
     @Test
     void getCustomerDetails() {
 
         Mockito.when(customerService.getCustomerDetails(1)).thenReturn(mockCustomer);
-        assertEquals(customerController.getCustomerDetails(1),customerService.getCustomerDetails(1));
+        assertEquals(customerController.getCustomerDetails(1), customerService.getCustomerDetails(1));
     }
 
     @Test
     void addCustomer() {
 
         Mockito.when(customerService.addCustomer(mockCustomerDTO)).thenReturn(mockCustomer);
-        assertEquals(customerController.addCustomer(mockCustomerDTO),customerService.addCustomer(mockCustomerDTO));
+        assertEquals(customerController.addCustomer(mockCustomerDTO), customerService.addCustomer(mockCustomerDTO));
     }
 
     @Test
     void updateCustomer() {
         Mockito.when(customerService.updateCustomer(mockCustomerDTO)).thenReturn(mockCustomer);
-        assertEquals(customerController.updateCustomer(mockCustomerDTO),customerService.updateCustomer(mockCustomerDTO));
+        assertEquals(customerController.updateCustomer(mockCustomerDTO), customerService.updateCustomer(mockCustomerDTO));
     }
 
     @Test
     void deleteCustomer() {
 
         Mockito.when(customerService.deleteCustomer(1)).thenReturn("Success");
-        assertEquals(customerController.deleteCustomer(1),customerService.deleteCustomer(1));
+        assertEquals(customerController.deleteCustomer(1), customerService.deleteCustomer(1));
 
     }
 }
