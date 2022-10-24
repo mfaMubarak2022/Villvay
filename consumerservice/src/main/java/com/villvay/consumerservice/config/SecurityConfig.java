@@ -1,5 +1,6 @@
 package com.villvay.consumerservice.config;
 
+import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
 import com.villvay.consumerservice.filter.JwtFilter;
 import com.villvay.consumerservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @EnableScheduling
+@EnableEncryptableProperties
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -46,10 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers(
-                        "/user/authentication",
-                        "/customer/getTotalCustomers",
-                        "/company/getTotalCompanies")
+                .antMatchers("/user/authentication","/customer/getTotalCustomers","/company/getTotalCompanies")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

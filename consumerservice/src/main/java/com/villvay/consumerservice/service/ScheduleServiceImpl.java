@@ -41,8 +41,8 @@ public class ScheduleServiceImpl implements ScheduleService {
     public void getAllCustomerDetails() {
         log.info("Customer Table Sync Started");
         JwtRequest jwtRequest = new JwtRequest();
-        jwtRequest.setUsername("admin");
-        jwtRequest.setPassword("pass");
+        jwtRequest.setUsername(username);
+        jwtRequest.setPassword(password);
         CustomerResponse customerResponse = new CustomerResponse();
         JwtResponse jwtResponse = restTemplate.exchange("http://localhost:8044/user/authentication", HttpMethod.POST, new HttpEntity<>(jwtRequest), JwtResponse.class).getBody();
         if (null != jwtResponse) {
@@ -66,8 +66,8 @@ public class ScheduleServiceImpl implements ScheduleService {
     public void getAllCompanyDetails() {
         log.info("Company Table Sync Started");
         JwtRequest jwtRequest = new JwtRequest();
-        jwtRequest.setUsername("admin");
-        jwtRequest.setPassword("pass");
+        jwtRequest.setUsername(username);
+        jwtRequest.setPassword(password);
 
         CompanyResponse companyResponse = new CompanyResponse();
         JwtResponse jwtResponse = restTemplate.exchange("http://localhost:8044/user/authentication", HttpMethod.POST, new HttpEntity<>(jwtRequest), JwtResponse.class).getBody();
