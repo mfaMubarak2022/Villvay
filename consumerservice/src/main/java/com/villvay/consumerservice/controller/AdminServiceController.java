@@ -1,7 +1,6 @@
 package com.villvay.consumerservice.controller;
 
 import com.villvay.consumerservice.entity.User;
-import com.villvay.consumerservice.model.UserDTO;
 import com.villvay.consumerservice.service.AdminServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

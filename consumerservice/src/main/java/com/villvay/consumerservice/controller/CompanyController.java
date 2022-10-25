@@ -1,10 +1,12 @@
 package com.villvay.consumerservice.controller;
 
 import com.villvay.consumerservice.entity.Company;
-import com.villvay.consumerservice.model.CompanyDTO;
 import com.villvay.consumerservice.service.CompanyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -33,21 +35,5 @@ public class CompanyController {
         return companyService.getCompanyDetails(companyId);
     }
 
-    @PostMapping("/addCompany")
-    public Company addCompany(@RequestBody Company company) {
 
-        return companyService.addCompany(company);
-    }
-
-    @PutMapping("/updateCompany")
-    public Company updateCompany(@RequestBody Company company) {
-
-        return companyService.updateCompany(company);
-    }
-
-    @DeleteMapping("/deleteCompany/{companyId}")
-    public String deleteCompany(@PathVariable("companyId") int companyId) {
-
-        return companyService.deleteCompany(companyId);
-    }
 }

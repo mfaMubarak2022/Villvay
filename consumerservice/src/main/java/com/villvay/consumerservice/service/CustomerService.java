@@ -10,10 +10,5 @@ public interface CustomerService {
     public int getTotalCustomers();
 
     public Customer getCustomerDetails(int customerId);
-
-    public Customer addCustomer(Customer customer);
-
-    public Customer updateCustomer(Customer customer);
-
-    public String deleteCustomer(int customerId);
+    
 }

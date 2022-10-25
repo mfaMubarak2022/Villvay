@@ -11,9 +11,4 @@ public interface CompanyService {
 
     public Company getCompanyDetails(int companyId);
 
-    public Company addCompany(Company company);
-
-    public Company updateCompany(Company company);
-
-    public String deleteCompany(int companyId);
 }

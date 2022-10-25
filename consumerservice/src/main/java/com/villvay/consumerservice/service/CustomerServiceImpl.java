@@ -26,18 +26,5 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRep.findByCustomerId(customerId);
     }
 
-    public Customer addCustomer(Customer customer) {
 
-        return customerRep.save(customer);
-    }
-
-    public Customer updateCustomer(Customer customer) {
-
-        return customerRep.save(customer);
-    }
-
-    public String deleteCustomer(int customerId) {
-
-        return customerRep.deleteByCustomerId(customerId) > 0 ? "Success" : "Failed";
-    }
 }
