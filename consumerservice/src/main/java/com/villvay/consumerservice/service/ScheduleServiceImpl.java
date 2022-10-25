@@ -37,39 +37,17 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Value("${company.password}")
     private String password;
 
+
+
     @Scheduled(fixedDelay = 60 * 60 * 1000, initialDelay = 1000)
-    public void getAllCustomerDetails() {
-        log.info("Customer Table Sync Started");
-        JwtRequest jwtRequest = new JwtRequest();
-        jwtRequest.setUsername(username);
-        jwtRequest.setPassword(password);
-        CustomerResponse customerResponse = new CustomerResponse();
-        JwtResponse jwtResponse = restTemplate.exchange("http://localhost:8044/user/authentication", HttpMethod.POST, new HttpEntity<>(jwtRequest), JwtResponse.class).getBody();
-        if (null != jwtResponse) {
-
-            HttpHeaders httpHeaders = new HttpHeaders();
-            httpHeaders.set("content-type", MediaType.APPLICATION_JSON_VALUE);
-            httpHeaders.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-            httpHeaders.set("Authorization", "PToken " + jwtResponse.getJwtToken());
-            customerResponse = restTemplate.exchange("http://localhost:8044/customer/getAllCustomers", HttpMethod.GET, new HttpEntity<>(httpHeaders), CustomerResponse.class).getBody();
-
-        }
-        if (null != customerResponse) {
-            List<Customer> customersList = customerResponse.getCustomerList();
-            customerRep.saveAll(customersList);
-            log.info("Customer Sync Completed");
-        }
-
-    }
-
-    @Scheduled(fixedDelay = 60 * 60 * 1000, initialDelay = 5000)
-    public void getAllCompanyDetails() {
+    public void getAllCustomerAndCompanyDetails() {
         log.info("Company Table Sync Started");
         JwtRequest jwtRequest = new JwtRequest();
         jwtRequest.setUsername(username);
         jwtRequest.setPassword(password);
 
         CompanyResponse companyResponse = new CompanyResponse();
+        CustomerResponse customerResponse = new CustomerResponse();
         JwtResponse jwtResponse = restTemplate.exchange("http://localhost:8044/user/authentication", HttpMethod.POST, new HttpEntity<>(jwtRequest), JwtResponse.class).getBody();
         if (null != jwtResponse) {
 
@@ -79,13 +57,19 @@ public class ScheduleServiceImpl implements ScheduleService {
             httpHeaders.set("Authorization", "PToken " + jwtResponse.getJwtToken());
             companyResponse = restTemplate.exchange("http://localhost:8044/company/getAllCompanies", HttpMethod.GET, new HttpEntity<>(httpHeaders), CompanyResponse.class).getBody();
 
+            customerResponse = restTemplate.exchange("http://localhost:8044/customer/getAllCustomers", HttpMethod.GET, new HttpEntity<>(httpHeaders), CustomerResponse.class).getBody();
+
         }
         if (null != companyResponse) {
             List<Company> companyList = companyResponse.getCompanyList();
             companyRep.saveAll(companyList);
             log.info("Company Sync Completed");
         }
-
+        if (null != customerResponse) {
+            List<Customer> customersList = customerResponse.getCustomerList();
+            customerRep.saveAll(customersList);
+            log.info("Customer Sync Completed");
+        }
     }
 
 

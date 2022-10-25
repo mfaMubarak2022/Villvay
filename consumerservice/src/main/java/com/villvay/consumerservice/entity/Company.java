@@ -34,8 +34,5 @@ public class Company {
     @Column(name = "Company_Email")
     private String companyEmail;
 
-    @OneToMany
-    @Column(name = "Customers")
-    private List<Customer> customers;
 
 }
