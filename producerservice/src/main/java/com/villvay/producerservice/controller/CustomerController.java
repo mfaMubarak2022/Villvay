@@ -1,7 +1,6 @@
 package com.villvay.producerservice.controller;
 
 import com.villvay.producerservice.entity.Customer;
-import com.villvay.producerservice.model.CustomerDTO;
 import com.villvay.producerservice.model.CustomerResponse;
 import com.villvay.producerservice.service.CustomerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +26,13 @@ public class CustomerController {
     }
 
     @PostMapping("/addCustomer")
-    public Customer addCustomer(@RequestBody CustomerDTO customer) {
+    public Customer addCustomer(@RequestBody Customer customer) {
 
         return customerService.addCustomer(customer);
     }
 
     @PutMapping("/updateCustomer")
-    public Customer updateCustomer(@RequestBody CustomerDTO customer) {
+    public Customer updateCustomer(@RequestBody Customer customer) {
 
         return customerService.updateCustomer(customer);
     }

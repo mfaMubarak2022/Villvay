@@ -23,7 +23,7 @@ public class AdminServiceController {
     }
 
     @PostMapping("/addUser")
-    public User addUser(@RequestBody UserDTO user) {
+    public User addUser(@RequestBody User user) {
 
         return adminService.addUser(user);
     }

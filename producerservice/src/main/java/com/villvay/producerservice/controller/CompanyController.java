@@ -1,7 +1,6 @@
 package com.villvay.producerservice.controller;
 
 import com.villvay.producerservice.entity.Company;
-import com.villvay.producerservice.model.CompanyDTO;
 import com.villvay.producerservice.model.CompanyResponse;
 import com.villvay.producerservice.service.CompanyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +26,13 @@ public class CompanyController {
     }
 
     @PostMapping("/addCompany")
-    public Company addCompany(@RequestBody CompanyDTO company) {
+    public Company addCompany(@RequestBody Company company) {
 
         return companyService.addCompany(company);
     }
 
     @PutMapping("/updateCompany")
-    public Company updateCompany(@RequestBody CompanyDTO company) {
+    public Company updateCompany(@RequestBody Company company) {
 
         return companyService.updateCompany(company);
     }

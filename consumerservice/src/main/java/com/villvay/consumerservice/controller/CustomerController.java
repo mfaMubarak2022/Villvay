@@ -34,13 +34,13 @@ public class CustomerController {
     }
 
     @PostMapping("/addCustomer")
-    public Customer addCustomer(@RequestBody CustomerDTO customer) {
+    public Customer addCustomer(@RequestBody Customer customer) {
 
         return customerService.addCustomer(customer);
     }
 
     @PutMapping("/updateCustomer")
-    public Customer updateCustomer(@RequestBody CustomerDTO customer) {
+    public Customer updateCustomer(@RequestBody Customer customer) {
 
         return customerService.updateCustomer(customer);
     }

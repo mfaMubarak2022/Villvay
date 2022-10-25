@@ -34,13 +34,13 @@ public class CompanyController {
     }
 
     @PostMapping("/addCompany")
-    public Company addCompany(@RequestBody CompanyDTO company) {
+    public Company addCompany(@RequestBody Company company) {
 
         return companyService.addCompany(company);
     }
 
     @PutMapping("/updateCompany")
-    public Company updateCompany(@RequestBody CompanyDTO company) {
+    public Company updateCompany(@RequestBody Company company) {
 
         return companyService.updateCompany(company);
     }
