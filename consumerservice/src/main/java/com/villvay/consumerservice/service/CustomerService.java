@@ -7,8 +7,8 @@ import java.util.List;
 public interface CustomerService {
     public List<Customer> getAllCustomers();
 
-    public int getTotalCustomers();
+    public long getTotalCustomers();
 
     public Customer getCustomerDetails(int customerId);
-    
+
 }

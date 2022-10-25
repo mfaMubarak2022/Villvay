@@ -16,8 +16,8 @@ public class CompanyServiceImpl implements CompanyService {
         return companyRep.findAll();
     }
 
-    public int getTotalCompanies() {
-        return companyRep.findAll().size();
+    public long getTotalCompanies() {
+        return companyRep.countByCompanyId();
     }
 
     public Company getCompanyDetails(int companyId) {

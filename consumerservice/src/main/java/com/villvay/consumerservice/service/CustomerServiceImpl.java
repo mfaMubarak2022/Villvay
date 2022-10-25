@@ -17,8 +17,8 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRep.findAll();
     }
 
-    public int getTotalCustomers() {
-        return customerRep.findAll().size();
+    public long getTotalCustomers() {
+        return customerRep.countByCustomerId();
     }
 
     public Customer getCustomerDetails(int customerId) {

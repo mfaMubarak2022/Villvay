@@ -17,4 +17,7 @@ public interface CompanyRep extends JpaRepository<Company, Integer> {
     @Query("delete from Company u where u.companyId = ?1")
     int deleteByCompanyId(int companyId);
 
+    @Query("select count(*) from Company")
+    public long countByCompanyId();
+
 }

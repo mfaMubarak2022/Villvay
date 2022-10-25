@@ -24,7 +24,7 @@ public class CompanyController {
     }
 
     @GetMapping("/getTotalCompanies")
-    public int getTotalCompanies() {
+    public long getTotalCompanies() {
 
         return companyService.getTotalCompanies();
     }

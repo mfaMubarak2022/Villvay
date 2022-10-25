@@ -43,7 +43,7 @@ class CompanyControllerTest {
 
     @Test
     void getTotalCompanies() {
-        Mockito.when(companyService.getTotalCompanies()).thenReturn(10);
+        Mockito.when(companyService.getTotalCompanies()).thenReturn(10L);
         assertEquals(companyController.getTotalCompanies(), companyService.getTotalCompanies());
     }
 
@@ -55,24 +55,4 @@ class CompanyControllerTest {
 
     }
 
-    @Test
-    void addCompany() {
-        Mockito.when(companyService.addCompany(mockCompanyDTO)).thenReturn(mockCompany);
-        assertEquals(companyController.addCompany(mockCompanyDTO), companyService.addCompany(mockCompanyDTO));
-
-    }
-
-    @Test
-    void updateCompany() {
-        Mockito.when(companyService.updateCompany(mockCompanyDTO)).thenReturn(mockCompany);
-        assertEquals(companyController.updateCompany(mockCompanyDTO), companyService.updateCompany(mockCompanyDTO));
-
-    }
-
-    @Test
-    void deleteCompany() {
-        Mockito.when(companyService.deleteCompany(1)).thenReturn("Success");
-        assertEquals(companyController.deleteCompany(1), companyService.deleteCompany(1));
-
-    }
 }

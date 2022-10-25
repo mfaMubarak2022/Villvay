@@ -24,7 +24,7 @@ public class CustomerController {
     }
 
     @GetMapping("/getTotalCustomers")
-    public int getTotalCustomers() {
+    public long getTotalCustomers() {
 
         return customerService.getTotalCustomers();
     }

@@ -45,7 +45,7 @@ class CustomerControllerTest {
 
     @Test
     void getTotalCustomers() {
-        Mockito.when(customerService.getTotalCustomers()).thenReturn(10);
+        Mockito.when(customerService.getTotalCustomers()).thenReturn(10L);
         assertEquals(customerController.getTotalCustomers(), customerService.getTotalCustomers());
     }
 
@@ -56,24 +56,5 @@ class CustomerControllerTest {
         assertEquals(customerController.getCustomerDetails(1), customerService.getCustomerDetails(1));
     }
 
-    @Test
-    void addCustomer() {
 
-        Mockito.when(customerService.addCustomer(mockCustomerDTO)).thenReturn(mockCustomer);
-        assertEquals(customerController.addCustomer(mockCustomerDTO), customerService.addCustomer(mockCustomerDTO));
-    }
-
-    @Test
-    void updateCustomer() {
-        Mockito.when(customerService.updateCustomer(mockCustomerDTO)).thenReturn(mockCustomer);
-        assertEquals(customerController.updateCustomer(mockCustomerDTO), customerService.updateCustomer(mockCustomerDTO));
-    }
-
-    @Test
-    void deleteCustomer() {
-
-        Mockito.when(customerService.deleteCustomer(1)).thenReturn("Success");
-        assertEquals(customerController.deleteCustomer(1), customerService.deleteCustomer(1));
-
-    }
 }

@@ -17,4 +17,7 @@ public interface CustomerRep extends JpaRepository<Customer, Integer> {
     @Modifying
     @Query("delete from Customer u where u.customerId = ?1")
     int deleteByCustomerId(Integer customerId);
+
+    @Query("select count(*) from Customer")
+    public long countByCustomerId();
 }

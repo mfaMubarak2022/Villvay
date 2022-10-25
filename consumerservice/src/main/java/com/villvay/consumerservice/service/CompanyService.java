@@ -7,7 +7,7 @@ import java.util.List;
 public interface CompanyService {
     public List<Company> getAllCompanies();
 
-    public int getTotalCompanies();
+    public long getTotalCompanies();
 
     public Company getCompanyDetails(int companyId);
 
