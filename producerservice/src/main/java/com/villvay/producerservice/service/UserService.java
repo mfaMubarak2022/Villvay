@@ -2,7 +2,6 @@ package com.villvay.producerservice.service;
 
 import com.villvay.producerservice.entity.CompanyUser;
 import com.villvay.producerservice.repo.CompanyUserRep;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,8 +13,11 @@ import java.util.ArrayList;
 @Service
 public class UserService implements UserDetailsService {
 
-    @Autowired
-    CompanyUserRep companyUserRep;
+    private final CompanyUserRep companyUserRep;
+
+    public UserService(CompanyUserRep companyUserRep) {
+        this.companyUserRep = companyUserRep;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -2,18 +2,20 @@ package com.villvay.consumerservice.service;
 
 import com.villvay.consumerservice.entity.User;
 import com.villvay.consumerservice.repo.UserRep;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AdminServiceImpl implements AdminService {
 
-    @Autowired
-    UserRep userRep;
+    private final UserRep userRep;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+
+    public AdminServiceImpl(UserRep userRep, PasswordEncoder passwordEncoder) {
+        this.userRep = userRep;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public User getUserData(String userName) {
 

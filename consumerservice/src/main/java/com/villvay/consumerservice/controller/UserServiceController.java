@@ -5,7 +5,6 @@ import com.villvay.consumerservice.model.JwtResponse;
 import com.villvay.consumerservice.repo.UserRep;
 import com.villvay.consumerservice.service.UserService;
 import com.villvay.consumerservice.util.JWTUtility;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,20 +18,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("user")
 public class UserServiceController {
-    @Autowired
-    UserRep userRep;
+    private final UserRep userRep;
 
-    @Autowired
-    private JWTUtility jwtUtility;
+    private final JWTUtility jwtUtility;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+
+    public UserServiceController(UserRep userRep, JWTUtility jwtUtility, AuthenticationManager authenticationManager, UserService userService, PasswordEncoder passwordEncoder) {
+        this.userRep = userRep;
+        this.jwtUtility = jwtUtility;
+        this.authenticationManager = authenticationManager;
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @PostMapping("/authentication")
     public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception {

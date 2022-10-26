@@ -9,7 +9,6 @@ import com.villvay.consumerservice.model.JwtResponse;
 import com.villvay.consumerservice.repo.CompanyRep;
 import com.villvay.consumerservice.repo.CustomerRep;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -24,12 +23,9 @@ import java.util.List;
 @Service
 @Slf4j
 public class ScheduleServiceImpl implements ScheduleService {
-    @Autowired
-    CustomerRep customerRep;
-    @Autowired
-    CompanyRep companyRep;
-    @Autowired
-    private RestTemplate restTemplate;
+    private final CustomerRep customerRep;
+    private final CompanyRep companyRep;
+    private final RestTemplate restTemplate;
 
     @Value("${company.username}")
     private String username;
@@ -37,6 +33,11 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Value("${company.password}")
     private String password;
 
+    public ScheduleServiceImpl(CustomerRep customerRep, CompanyRep companyRep, RestTemplate restTemplate) {
+        this.customerRep = customerRep;
+        this.companyRep = companyRep;
+        this.restTemplate = restTemplate;
+    }
 
 
     @Scheduled(fixedDelay = 60 * 60 * 1000, initialDelay = 1000)

@@ -3,7 +3,6 @@ package com.villvay.consumerservice.config;
 import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
 import com.villvay.consumerservice.filter.JwtFilter;
 import com.villvay.consumerservice.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -22,14 +21,17 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableEncryptableProperties
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
-    @Autowired
-    private JwtFilter jwtFilter;
+    private final JwtFilter jwtFilter;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+
+    public SecurityConfig(UserService userService, JwtFilter jwtFilter, PasswordEncoder passwordEncoder) {
+        this.userService = userService;
+        this.jwtFilter = jwtFilter;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

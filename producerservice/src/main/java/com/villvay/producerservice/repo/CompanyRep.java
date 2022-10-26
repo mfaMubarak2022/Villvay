@@ -18,5 +18,4 @@ public interface CompanyRep extends JpaRepository<Company, Integer> {
     int deleteByCompanyId(int companyId);
 
 
-
 }

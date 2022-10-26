@@ -3,13 +3,15 @@ package com.villvay.producerservice.service;
 import com.villvay.producerservice.entity.Company;
 import com.villvay.producerservice.model.CompanyResponse;
 import com.villvay.producerservice.repo.CompanyRep;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
-    @Autowired
-    CompanyRep companyRep;
+    private final CompanyRep companyRep;
+
+    public CompanyServiceImpl(CompanyRep companyRep) {
+        this.companyRep = companyRep;
+    }
 
     public CompanyResponse getAllCompanies() {
         CompanyResponse companyResponse = new CompanyResponse();

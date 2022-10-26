@@ -1,7 +1,6 @@
 package com.villvay.consumerservice.service;
 
 import com.villvay.consumerservice.repo.UserRep;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,8 +12,11 @@ import java.util.ArrayList;
 @Service
 public class UserService implements UserDetailsService {
 
-    @Autowired
-    UserRep userRep;
+    private final UserRep userRep;
+
+    public UserService(UserRep userRep) {
+        this.userRep = userRep;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -2,18 +2,20 @@ package com.villvay.producerservice.service;
 
 import com.villvay.producerservice.entity.CompanyUser;
 import com.villvay.producerservice.repo.CompanyUserRep;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AdminServiceImpl implements AdminService {
 
-    @Autowired
-    CompanyUserRep companyUserRep;
+    private final CompanyUserRep companyUserRep;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+
+    public AdminServiceImpl(CompanyUserRep companyUserRep, PasswordEncoder passwordEncoder) {
+        this.companyUserRep = companyUserRep;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public CompanyUser getUserData(String userName) {
 

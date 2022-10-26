@@ -3,14 +3,16 @@ package com.villvay.producerservice.service;
 import com.villvay.producerservice.entity.Customer;
 import com.villvay.producerservice.model.CustomerResponse;
 import com.villvay.producerservice.repo.CustomerRep;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
-    @Autowired
-    CustomerRep customerRep;
+    private final CustomerRep customerRep;
+
+    public CustomerServiceImpl(CustomerRep customerRep) {
+        this.customerRep = customerRep;
+    }
 
     public CustomerResponse getAllCustomers() {
 

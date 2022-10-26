@@ -3,15 +3,17 @@ package com.villvay.producerservice.controller;
 import com.villvay.producerservice.entity.Company;
 import com.villvay.producerservice.model.CompanyResponse;
 import com.villvay.producerservice.service.CompanyServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("company")
 public class CompanyController {
 
-    @Autowired
-    CompanyServiceImpl companyService;
+    private final CompanyServiceImpl companyService;
+
+    public CompanyController(CompanyServiceImpl companyService) {
+        this.companyService = companyService;
+    }
 
     @GetMapping("/getAllCompanies")
     public CompanyResponse getAllCompanies() {

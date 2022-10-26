@@ -1,20 +1,21 @@
 package com.villvay.producerservice.controller;
 
 import com.villvay.producerservice.entity.CompanyUser;
-import com.villvay.producerservice.model.CompanyUserDTO;
 import com.villvay.producerservice.service.AdminServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("admin")
 public class AdminServiceController {
-    @Autowired
-    AdminServiceImpl adminService;
+    private final AdminServiceImpl adminService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+
+    public AdminServiceController(AdminServiceImpl adminService, PasswordEncoder passwordEncoder) {
+        this.adminService = adminService;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @GetMapping("/getUser/{userName}")
     public CompanyUser getUserData(@PathVariable("userName") String userName) {

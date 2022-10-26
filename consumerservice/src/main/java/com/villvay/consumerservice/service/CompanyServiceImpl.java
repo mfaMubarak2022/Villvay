@@ -2,15 +2,18 @@ package com.villvay.consumerservice.service;
 
 import com.villvay.consumerservice.entity.Company;
 import com.villvay.consumerservice.repo.CompanyRep;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
-    @Autowired
-    CompanyRep companyRep;
+
+    private final CompanyRep companyRep;
+
+    public CompanyServiceImpl(CompanyRep companyRep) {
+        this.companyRep = companyRep;
+    }
 
     public List<Company> getAllCompanies() {
         return companyRep.findAll();

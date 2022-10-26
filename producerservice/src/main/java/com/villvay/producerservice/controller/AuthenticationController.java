@@ -4,7 +4,6 @@ import com.villvay.producerservice.model.JwtRequest;
 import com.villvay.producerservice.model.JwtResponse;
 import com.villvay.producerservice.service.UserService;
 import com.villvay.producerservice.util.JWTUtility;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,17 +18,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("user")
 public class AuthenticationController {
 
-    @Autowired
-    private JWTUtility jwtUtility;
+    private final JWTUtility jwtUtility;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+
+    public AuthenticationController(JWTUtility jwtUtility, AuthenticationManager authenticationManager, UserService userService, PasswordEncoder passwordEncoder) {
+        this.jwtUtility = jwtUtility;
+        this.authenticationManager = authenticationManager;
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @PostMapping("/authentication")
     public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception {
